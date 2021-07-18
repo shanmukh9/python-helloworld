@@ -1,4 +1,4 @@
- This is a basic workflow to help you get started with Actions
+# This is a basic workflow to help you get started with Actions
 
 name: Docker Build and Push
 
@@ -6,9 +6,9 @@ name: Docker Build and Push
 # events but only for the master branch
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -33,7 +33,7 @@ jobs:
         uses: docker/login-action@v1 
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKER_TOKEN }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push
         uses: docker/build-push-action@v2
@@ -42,4 +42,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: shanmukh9/python-helloworld:latest
+          tags: shanmukh9/python-helloworld:v1.0.0
